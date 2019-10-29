@@ -5,7 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 gem 'rails', '~> 5.1.7'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.7'
@@ -15,7 +14,7 @@ gem 'webpacker', '~> 4.x'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'clearance'
-gem 'react_on_rails', '11.1.4'
+gem 'react_on_rails', '11.3.0'
 gem 'therubyracer'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
