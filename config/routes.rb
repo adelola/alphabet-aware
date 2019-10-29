@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root to: "homes#show"
   resources :classrooms
   resources :students
-  
+  resources :challenges, only: [:edit, :update, :delete]
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
 
