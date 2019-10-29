@@ -1,6 +1,5 @@
-class Classroom < ApplicationRecord
-  belongs_to :user
-  has_many :students
+class Student < ApplicationRecord
+  belongs_to :classroom
 
   validates :name, presence: true, length: { in: 1...140 }
   validates :user, presence: true
