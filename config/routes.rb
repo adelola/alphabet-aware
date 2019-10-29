@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   end
 
   root to: "homes#show"
+  resources :classrooms
+  
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
 
