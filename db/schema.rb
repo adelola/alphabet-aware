@@ -10,19 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191029063023) do
+ActiveRecord::Schema.define(version: 20191108013542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "challenges", force: :cascade do |t|
-    t.string "name"
     t.date "date"
     t.string "type"
     t.text "note"
     t.bigint "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "score"
     t.index ["student_id"], name: "index_challenges_on_student_id"
   end
 
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(version: 20191029063023) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["challenge_id"], name: "index_correct_answers_on_challenge_id"
+  end
+
+  create_table "incorrect_answers", force: :cascade do |t|
+    t.string "letter"
+    t.bigint "challenge_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_id"], name: "index_incorrect_answers_on_challenge_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -66,5 +74,6 @@ ActiveRecord::Schema.define(version: 20191029063023) do
   add_foreign_key "challenges", "students"
   add_foreign_key "classrooms", "users"
   add_foreign_key "correct_answers", "challenges"
+  add_foreign_key "incorrect_answers", "challenges"
   add_foreign_key "students", "classrooms"
 end
