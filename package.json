@@ -1,6 +1,6 @@
 {
     "name": "alphabet_aware",
-    "description": "track progress of learning the alphabet",
+    "description": "Track progress of learning the alphabet",
     "main": "server.js",
     "scripts": {
       "postinstall": "cd ./client && yarn install",
