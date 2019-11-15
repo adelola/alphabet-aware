@@ -18,7 +18,7 @@ module.exports = {
   // the project dir
   context: __dirname,
   entry: [
-    './app/startup/serverRegistration',
+    './packs/alphabet-bundle.js',
   ],
   output: {
     // Important to NOT use a hash if the server webpack config runs separately from the client one.
@@ -50,7 +50,18 @@ module.exports = {
       ...assetLoaderRules,
       {
         test: /\.jsx?$/,
-        use: 'babel-loader',
+        loader: 'babel-loader',
+        options: {
+          "presets": [
+            "@babel/preset-env",
+            "@babel/preset-react",
+            {
+              "plugins": [
+                "@babel/plugin-proposal-class-properties"
+              ]
+            }
+          ],
+        },
         exclude: /node_modules/,
       },
       {

@@ -22,6 +22,7 @@ module.exports = {
     // This will contain the app entry points defined by
     // webpack.client.rails.hot.config and webpack.client.rails.build.config
     'app-bundle': [
+      './packs/alphabet-bundle',
       './app/startup/clientRegistration',
     ],
   },
@@ -30,6 +31,10 @@ module.exports = {
     alias: {
       images: join(process.cwd(), 'app', 'assets', 'images'),
     },
+    modules: [
+      'client/app',
+      'client/node_modules',
+    ],
   },
 
 
@@ -43,19 +48,19 @@ module.exports = {
     }),
 
     // https://webpack.js.org/guides/code-splitting-libraries/#implicit-common-vendor-chunk
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor-bundle',
-      // We don't want the default vendor.js name
-      filename: 'vendor-bundle-[hash].js',
-      minChunks(module) {
-        // this assumes your vendor imports exist in the node_modules directory
-        return module.context && module.context.indexOf('node_modules') !== -1;
-      },
-    }),
-    new ManifestPlugin({
-      publicPath: output.publicPath,
-      writeToFileEmit: true,
-    }),
+    // new config.optimization.splitChunks({
+    //   name: 'vendor-bundle',
+    //   // We don't want the default vendor.js name
+    //   filename: 'vendor-bundle-[hash].js',
+    //   minChunks(module) {
+    //     // this assumes your vendor imports exist in the node_modules directory
+    //     return module.context && module.context.indexOf('node_modules') !== -1;
+    //   },
+    // }),
+    // new ManifestPlugin({
+    //   publicPath: output.publicPath,
+    //   writeToFileEmit: true,
+    // }),
   ],
 
   module: {

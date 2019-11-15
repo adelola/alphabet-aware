@@ -4,9 +4,26 @@
 # for many more options.
 
 ReactOnRails.configure do |config|
+  config.node_modules_location = "client"
+
+  config.webpack_generated_files = %w[ app-bundle.js vendor-bundle.js app-bundle.css
+    vendor-bundle.css server-bundle.js ]
+
   # This configures the script to run to build the production assets by webpack. Set this to nil
   # if you don't want react_on_rails building this file for you.
   config.build_production_command = "RAILS_ENV=production NODE_ENV=production bin/webpack"
+  ################################################################################
+  # CLIENT RENDERING OPTIONS
+  # Below options can be overriden by passing options to the react_on_rails
+  # `render_component` view helper method.
+  ################################################################################
+
+  # Default is false. Can be overriden at the component level.
+  # Set to false for debugging issues before turning on to true.
+  config.prerender = false
+
+  # default is true for development, off otherwise
+  config.trace = Rails.env.development?
 
   ################################################################################
   ################################################################################
